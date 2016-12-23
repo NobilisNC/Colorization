@@ -51,7 +51,9 @@ public class MainWindow extends JFrame implements ActionListener  {
 		FlowLayout main_layout = new FlowLayout();
 		content = getContentPane();
 		content.setLayout(main_layout);
-		
+                
+                Ui_coloring();
+		repaint();
 	}	
 	
         @Override
@@ -87,5 +89,13 @@ public class MainWindow extends JFrame implements ActionListener  {
 			content.add(Ui);
 			revalidate();
 	}
+        
+        
+        private void Ui_coloring() {
+            Ui = new ColoringPanel(this);
+            content.removeAll();
+            content.add(Ui);
+            revalidate();
+        }
         
 }

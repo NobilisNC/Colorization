@@ -80,7 +80,7 @@ class CreationPanel extends JPanel implements PropertyChangeListener, ActionList
 	
 	protected void initComponents() {
 		
-		drawing_panel = new Coloring();
+		drawing_panel = new Coloring(this);
 		
 		tools_panel = new JPanel();
 		tools_panel.setLayout(new BoxLayout(tools_panel, BoxLayout.Y_AXIS));

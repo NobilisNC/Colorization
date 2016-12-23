@@ -15,7 +15,8 @@ import java.util.*;
 import javax.imageio.*;
 
 public class Coloring extends JComponent implements MouseListener {
-	;
+	
+        private final ColoringPanel parent;
 	private BufferedImage default_image;
 	private BufferedImage image;
 	private WritableRaster wraster;
@@ -27,8 +28,9 @@ public class Coloring extends JComponent implements MouseListener {
 	private int dist_y = 3;
 	
 	
-	public Coloring() {
+	public Coloring(ColoringPanel p) {
 		super();
+                parent = p;
 		image = null;
 		addMouseListener(this);
 		

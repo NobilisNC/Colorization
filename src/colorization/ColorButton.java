@@ -1,42 +1,61 @@
 package colorization;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 
 
-class ColorButton extends JComponent {
+class ColorButton extends JComponent implements MouseListener {
 
 	//Attributs
+         private final ColorPanel parent; 
 	 private final Color maCouleur;
+         private boolean selected;
+         
+         private static final int SIZE = 30;
 	 
 	
 	
 	//Méthodes
-	public ColorButton(Color color) {
+	public ColorButton(Color color, ColorPanel p) {
 		super();
+                parent = p;
 		maCouleur = color;
+                selected = false;
+                addMouseListener(this);
 	}
         
         public Color getColor() {
             return maCouleur;
         }
+        
+        public void select() {
+            selected = true;
+            repaint();
+        }
+        
+        public void deselect() {
+            selected = false;
+            repaint();
+        }
 	
          @Override
 	public Dimension getPreferredSize() {
-		return new Dimension(100,100);
+		return new Dimension(SIZE,SIZE);
 		
 	}
 	
          @Override
 	public Dimension getMinimumSize()  {
-		return new Dimension(100,100);	
+		return new Dimension(SIZE,SIZE);	
 		
 	}
 	
          @Override
 	public Dimension getMaximumSize() {
-		return new Dimension(100,100);
+		return new Dimension(SIZE,SIZE);
 		
 	}
 	
@@ -45,8 +64,37 @@ class ColorButton extends JComponent {
 		super.paintComponents(g);
 		
 		g.setColor(maCouleur);
-		g.fillRect(0, 0, 100, 100);	
+		g.fillRect(0, 0, SIZE, SIZE);	
+                
+                if (selected) {
+                    g.setColor(Color.black);
+                    g.drawRect(0, 0, SIZE-1, SIZE-1);
+                }
+                    
 	}	
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        selected = true; 
+        parent.setSelected(this);
+        repaint();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {  
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+    }
 	
 	
 }
