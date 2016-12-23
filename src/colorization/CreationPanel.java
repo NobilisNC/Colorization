@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class CreationPanel extends JPanel implements PropertyChangeListener, ActionListener {
+class CreationPanel extends JPanel implements PropertyChangeListener, ActionListener {
     
-        private MainWindow parent;
+        private final MainWindow parent;
 	
 	private JPanel tools_panel;
         private JLabel label_contrast;

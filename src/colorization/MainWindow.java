@@ -54,6 +54,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 		
 	}	
 	
+        @Override
 	public void actionPerformed(ActionEvent cliqueMenu) 
 	{
 		if (cliqueMenu.getSource().equals(item_load)) {
@@ -87,13 +88,4 @@ public class MainWindow extends JFrame implements ActionListener  {
 			revalidate();
 	}
         
-        public void echoCaca() {
-            System.out.println("Caca");
-        }
-
-	
-	
-	
-
-	
 }

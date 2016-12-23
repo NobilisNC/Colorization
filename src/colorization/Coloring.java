@@ -90,6 +90,7 @@ public class Coloring extends JComponent implements MouseListener {
             repaint();
 	}
 	
+        @Override
 	public Dimension getPreferredSize() {
 		if (image == null)
 			return new Dimension(100,100);
@@ -97,6 +98,7 @@ public class Coloring extends JComponent implements MouseListener {
 			return new Dimension(image.getWidth(),image.getHeight());		
 	}
 	
+        @Override
 	public Dimension getMinimumSize()  {
 		if (image == null) 
 			return new Dimension(100,100);
@@ -104,6 +106,7 @@ public class Coloring extends JComponent implements MouseListener {
 			return new Dimension(image.getWidth(),image.getHeight());	
 	}
 	
+        @Override
 	public Dimension getMaximumSize() {
 		if (image == null)
 			return new Dimension(100,100);
@@ -111,6 +114,7 @@ public class Coloring extends JComponent implements MouseListener {
 			return new Dimension(image.getWidth(),image.getHeight());
 	}
 	
+        @Override
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -273,7 +277,7 @@ public class Coloring extends JComponent implements MouseListener {
 					max = val;
 				G[x + y*image.getWidth()] = val;
 			}
-			float ratio = max/255;
+                        float ratio = max/255;
 			
 			for(int x = 0; x < image.getWidth(); x++)
 				for (int y = 0; y < image.getHeight(); y++) {
@@ -292,10 +296,7 @@ public class Coloring extends JComponent implements MouseListener {
 	    	Object pix = wraster.getDataElements(x, y, null);
 	    	int pix_color = color_model.getRGB(pix);
 	    	
-	    	if (pix_color == targetColor) 
-	    		return true;
-	    	else
-	    		return false;
+                return pix_color == targetColor;
     	} else {
     		return false;
     	}
@@ -312,8 +313,8 @@ public class Coloring extends JComponent implements MouseListener {
     	Object new_color = color_model.getDataElements(rgb_new_color,null);
     	    	
     	
-    	Stack<Integer> P_x =  new Stack<Integer>();
-    	Stack<Integer> P_y =  new Stack<Integer>();
+    	Stack<Integer> P_x =  new Stack<>();
+    	Stack<Integer> P_y =  new Stack<>();
     	
     	if (isTargetColor(x,y,targetColor)) {
     		P_x.push(x);
@@ -357,14 +358,19 @@ public class Coloring extends JComponent implements MouseListener {
     
     /* *** *** SLOTS *** *** */
     
+        @Override
     public void mouseClicked(MouseEvent e) {
     	//System.out.println(e.getX() + " , " + e.getY());
        color(e.getX(), e.getY());
     }
     
+        @Override
     public void mousePressed(MouseEvent e) {}
+        @Override
     public void mouseEntered(MouseEvent e) {}
+        @Override
     public void mouseExited(MouseEvent e) {}
+        @Override
     public void mouseReleased(MouseEvent e) {}
 
 

@@ -8,7 +8,7 @@ import javax.swing.*;
 class ColorButton extends JComponent {
 
 	//Attributs
-	 private Color maCouleur;
+	 private final Color maCouleur;
 	 
 	
 	
@@ -17,17 +17,24 @@ class ColorButton extends JComponent {
 		super();
 		maCouleur = color;
 	}
+        
+        public Color getColor() {
+            return maCouleur;
+        }
 	
+         @Override
 	public Dimension getPreferredSize() {
 		return new Dimension(100,100);
 		
 	}
 	
+         @Override
 	public Dimension getMinimumSize()  {
 		return new Dimension(100,100);	
 		
 	}
 	
+         @Override
 	public Dimension getMaximumSize() {
 		return new Dimension(100,100);
 		
@@ -38,10 +45,7 @@ class ColorButton extends JComponent {
 		super.paintComponents(g);
 		
 		g.setColor(maCouleur);
-		g.fillRect(0, 0, 100, 100);
-		
-	
-		
+		g.fillRect(0, 0, 100, 100);	
 	}	
 	
 	
