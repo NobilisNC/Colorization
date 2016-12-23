@@ -7,17 +7,20 @@ package colorization;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.io.File;
 
 class ColoringPanel extends JPanel {
     
-    MainWindow parent;
-    ColorPanel colors;
-    Coloring coloring;
+    private final MainWindow parent;
+    private ColorPanel colors;
+    private Coloring coloring;
+    private final String path ;
     
     
     
-    public ColoringPanel(MainWindow p) {
+    public ColoringPanel(String _path, MainWindow p) {
        parent = p;  
+       path = _path;
        initComponents();
     }
     
@@ -27,6 +30,8 @@ class ColoringPanel extends JPanel {
         colors = new ColorPanel();
         
         coloring = new Coloring(this);
+        File file = new File(path);
+        coloring.loadImage(file);
         
         this.add(colors);
         this.add(coloring);
@@ -34,7 +39,7 @@ class ColoringPanel extends JPanel {
     
     protected Color getColor() {
         
-        return Color.red;
+        return colors.getSelectedColor();
     }
     
 }

@@ -52,7 +52,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 		content = getContentPane();
 		content.setLayout(main_layout);
                 
-                Ui_coloring();
+                
 		repaint();
 	}	
 	
@@ -83,19 +83,22 @@ public class MainWindow extends JFrame implements ActionListener  {
 		}
 	}
 
-	private void Ui_creation(File f) {
+	public void Ui_creation(File f) {
 			Ui = new CreationPanel(f, this);
 			content.removeAll();
 			content.add(Ui);
 			revalidate();
+                        repaint();
 	}
         
         
-        private void Ui_coloring() {
-            Ui = new ColoringPanel(this);
+        public void Ui_coloring(String path) {
+            Ui = new ColoringPanel(path, this);
+            
             content.removeAll();
             content.add(Ui);
             revalidate();
+            repaint();
         }
         
 }
