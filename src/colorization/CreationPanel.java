@@ -26,7 +26,7 @@ public class CreationPanel extends JPanel implements PropertyChangeListener, Act
 	private JFormattedTextField f_distX;
         private JLabel label_distY;
 	private JFormattedTextField f_distY;
-	private DrawingPanel drawing_panel;
+	private Coloring drawing_panel;
 	private JCheckBox check_advanced;
         private JButton save;
         
@@ -75,12 +75,12 @@ public class CreationPanel extends JPanel implements PropertyChangeListener, Act
 		revalidate();
 		repaint();
 		
-		repaintDrawingPanel();
+		repaintColoring();
 	}
 	
 	protected void initComponents() {
 		
-		drawing_panel = new DrawingPanel();
+		drawing_panel = new Coloring();
 		
 		tools_panel = new JPanel();
 		tools_panel.setLayout(new BoxLayout(tools_panel, BoxLayout.Y_AXIS));
@@ -116,7 +116,7 @@ public class CreationPanel extends JPanel implements PropertyChangeListener, Act
 	}
 	
 	
-	private void repaintDrawingPanel()
+	private void repaintColoring()
 	{
         if (advanced_creation)
         	drawing_panel.advancedCreation();
@@ -139,7 +139,7 @@ public class CreationPanel extends JPanel implements PropertyChangeListener, Act
 	        	drawing_panel.setDistY(((Number)f_distY.getValue()).intValue());
 	        } 
 	        
-	        repaintDrawingPanel();
+	        repaintColoring();
 	        
 	   	}
 
@@ -152,7 +152,7 @@ public class CreationPanel extends JPanel implements PropertyChangeListener, Act
 			
 		tools_panel.removeAll();
 		createPanel();
-                repaintDrawingPanel();
+                repaintColoring();
     
 		repaint();
 		

@@ -14,7 +14,7 @@ import java.util.*;
 
 import javax.imageio.*;
 
-public class DrawingPanel extends JComponent implements MouseListener {
+public class Coloring extends JComponent implements MouseListener {
 	;
 	private BufferedImage default_image;
 	private BufferedImage image;
@@ -27,7 +27,7 @@ public class DrawingPanel extends JComponent implements MouseListener {
 	private int dist_y = 3;
 	
 	
-	public DrawingPanel() {
+	public Coloring() {
 		super();
 		image = null;
 		addMouseListener(this);
@@ -60,7 +60,7 @@ public class DrawingPanel extends JComponent implements MouseListener {
 	    return b;
 	}	
 	private void setWorkCopy() {
-		image = DrawingPanel.copyImage(default_image);
+		image = Coloring.copyImage(default_image);
 		image = new BufferedImage(default_image.getWidth(), default_image.getHeight(), BufferedImage.TYPE_INT_RGB);
 		Graphics2D surfaceImg = image.createGraphics();
 		surfaceImg.drawImage(default_image, null, null);  
@@ -76,18 +76,18 @@ public class DrawingPanel extends JComponent implements MouseListener {
 	
 	
 	public void advancedCreation() {
-		setWorkCopy();
+            setWorkCopy();
 	    gray();
-    	RescaleOp contrast = new RescaleOp(contrast_1, 0, null);
-    	contrast.filter(image,image);   	
-    	sobel();
-    	reversed();
-    	alpha();
+            RescaleOp contrast = new RescaleOp(contrast_1, 0, null);
+            contrast.filter(image,image);   	
+            sobel();
+            reversed();
+            alpha();
 
-    	line_marker_x();
-    	line_marker_y();
-    	
-    	repaint();
+            line_marker_x();
+            line_marker_y();
+
+            repaint();
 	}
 	
 	public Dimension getPreferredSize() {
@@ -118,6 +118,8 @@ public class DrawingPanel extends JComponent implements MouseListener {
 			g.drawImage(image, 0, 0, getWidth(),getHeight(), null);		
 	} 
 	
+        /* ***  *** FILTRES *** *** */
+        
 	protected void reversed() {
 		
 		for(int y = 0; y < image.getHeight(); y++) {
@@ -131,7 +133,7 @@ public class DrawingPanel extends JComponent implements MouseListener {
 	
 	
 	
-	/* ***  *** FILTRES *** *** */
+
 		
 	private int checkBlack_x(int x, int y) {
 		for( int i = x+1; i-x < dist_x && i < image.getWidth(); i++ ) 
