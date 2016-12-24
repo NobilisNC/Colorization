@@ -6,6 +6,7 @@
 package colorization;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -24,7 +25,7 @@ class ColorPanel extends JPanel {
     }
     
     private void initComponents() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new GridLayout(10,2));
         
         int[] default_colors = { 0xFFFFFF, // Blanc
                                  0x010101,  // Noir

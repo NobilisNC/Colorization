@@ -18,11 +18,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 	private JMenuItem item_load = null;
 	private JMenuItem item_exit = null;
 	private JPanel Ui = null;
-	
-	
-
-	
-	
+		
 	
 	public MainWindow(String title) {
 		super(title);
@@ -47,8 +43,9 @@ public class MainWindow extends JFrame implements ActionListener  {
 		menu_file.add(item_exit);
 		item_exit.addActionListener(this);
 		item_exit.setText("Quitter");
-		//Centre
-		FlowLayout main_layout = new FlowLayout();
+		
+                //Centre
+		BorderLayout main_layout = new BorderLayout();
 		content = getContentPane();
 		content.setLayout(main_layout);
                 
@@ -96,7 +93,7 @@ public class MainWindow extends JFrame implements ActionListener  {
             Ui = new ColoringPanel(path, this);
             
             content.removeAll();
-            content.add(Ui);
+            content.add(Ui, BorderLayout.PAGE_START);
             revalidate();
             repaint();
         }
