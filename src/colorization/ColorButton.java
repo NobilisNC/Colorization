@@ -48,8 +48,7 @@ class ColorButton extends JComponent implements MouseListener {
          @Override
 	public Dimension getPreferredSize() {
 		return new Dimension(SIZE,SIZE);
-		
-	}
+     	}
 	
          @Override
 	public Dimension getMinimumSize()  {

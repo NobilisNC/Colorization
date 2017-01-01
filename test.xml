@@ -2,56 +2,20 @@
 <colorings>
   <coloring>
     <name>test</name>
-    <path>/home/nobilis/.coloriages/defaults/test.png</path>
+    <default>/home/nobilis/.coloriages/defaults/test.png</default>
     <model>/home/nobilis/.coloriages/models/test.png</model>
     <thumbnail>/home/nobilis/.coloriages/thumbnails/test.png</thumbnail>
     <palette>
       <color>-1</color>
-      <color>-fefeff</color>
-      <color>-ffff01</color>
-      <color>-ff0100</color>
-      <color>-10000</color>
-      <color>-100</color>
-      <color>-ff0001</color>
-      <color>-ff01</color>
-      <color>-555556</color>
-      <color>-222223</color>
-    </palette>
-  </coloring>
-  <coloring>
-    <name>cheval_test</name>
-    <path>/home/nobilis/.coloriages/defaults/cheval_test.png</path>
-    <model>/home/nobilis/.coloriages/models/cheval_test.png</model>
-    <thumbnail>/home/nobilis/.coloriages/thumbnails/cheval_test.png</thumbnail>
-    <palette>
-      <color>-1</color>
-      <color>-fefeff</color>
-      <color>-ffff01</color>
-      <color>-ff0100</color>
-      <color>-10000</color>
-      <color>-100</color>
-      <color>-ff0001</color>
-      <color>-ff01</color>
-      <color>-555556</color>
-      <color>-222223</color>
-    </palette>
-  </coloring>
-  <coloring>
-    <name>mandala</name>
-    <path>/home/nobilis/.coloriages/defaults/mandala.png</path>
-    <model>/home/nobilis/.coloriages/models/mandala.png</model>
-    <thumbnail>/home/nobilis/.coloriages/thumbnails/mandala.png</thumbnail>
-    <palette>
-      <color>-1</color>
-      <color>-fefeff</color>
-      <color>-ffff01</color>
-      <color>-ff0100</color>
-      <color>-10000</color>
-      <color>-100</color>
-      <color>-ff0001</color>
-      <color>-ff01</color>
-      <color>-555556</color>
-      <color>-222223</color>
+      <color>-16711423</color>
+      <color>-16776961</color>
+      <color>-16711936</color>
+      <color>-65536</color>
+      <color>-256</color>
+      <color>-16711681</color>
+      <color>-65281</color>
+      <color>-5592406</color>
+      <color>-2236963</color>
     </palette>
   </coloring>
 </colorings>

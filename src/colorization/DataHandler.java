@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -14,7 +15,7 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 
-public class DataHandler {
+class DataHandler {
     
         
     private static final String PATH = "/home/nobilis/.coloriages/";
@@ -59,7 +60,7 @@ public class DataHandler {
         n.setText(name);
         coloring.addContent(n);
          
-        Element path = new Element("path");
+        Element path = new Element("default");
         path.setText(path_default);
         coloring.addContent(path);
         Element model = new Element("model");
@@ -72,7 +73,7 @@ public class DataHandler {
         Element pal = new Element("palette");
         for ( int c : palette) {
             Element color = new Element("color");
-            color.setText(Integer.toString(c, 16));
+            color.setText(Integer.toString(c));
             pal.addContent(color);
                      
         }
@@ -90,14 +91,41 @@ public class DataHandler {
     }
     
    
-    public void list() {
+    public Vector<Data> list() {
         List colorings = root.getChildren("coloring");
+        Vector<Data> datas = new Vector<>();
         
         for (Object i : colorings) {
             Element courant = (Element) i;
-            System.err.println(courant.getChild("name").getText());
-        }
+            Data d = new Data();
+            d.name = courant.getChild("name").getText();
+            d.path_default = courant.getChild("default").getText();
+            d.path_model = courant.getChild("model").getText();
+            d.path_thumbnail = courant.getChild("thumbnail").getText();
+            
+            Element palette = courant.getChild("palette");
+            d.palette = new int[10];
+            for (Object c : palette.getChildren("color")) {
+                Element color = (Element) c;
+                System.err.println(color.getText() instanceof String);
                 
+                int caca = Integer.parseInt( (String) color.getText());
+                
+
+                
+                
+            }
+            datas.add(d);
+        }
+        return datas;                
     }
    
+}
+
+class Data {
+    public String path_default;
+    public String path_model;
+    public String path_thumbnail;
+    public String name;
+    public int[] palette;   
 }

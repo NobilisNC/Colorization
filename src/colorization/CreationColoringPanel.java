@@ -145,7 +145,7 @@ class CreationColoringPanel extends JPanel implements PropertyChangeListener, Ac
             }
             File file = new File("/home/nobilis/coding/iut/java/Color/coloriages/" + name);
             processed_image.saveImage(file); */
-            parent.Ui_coloring(processed_image.getImage());
+            parent.Ui_colorModel(processed_image.getImage());
         }
         
 	

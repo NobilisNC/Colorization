@@ -50,6 +50,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 		content = getContentPane();
 		content.setLayout(main_layout);
                 
+                Ui_list();
                 
 		repaint();  
 	}	
@@ -83,28 +84,35 @@ public class MainWindow extends JFrame implements ActionListener  {
 
 	public void Ui_creation(File f) {
 			Ui = new CreationColoringPanel(f, this);
-			content.removeAll();
-			content.add(Ui);
-			revalidate();
-                        repaint();
+			Ui_reset();
 	}
         
         
-        public void Ui_coloring(BufferedImage bi) {
+        public void Ui_colorModel(BufferedImage bi) {
             Ui = new CreationModelPanel(bi, this);
+            Ui_reset();
+        }
+
+
+    
+        public void Ui_list() {
+            DataHandler d = new DataHandler();
+            Ui = new listPanel(d.list(), this);
             
+            Ui_reset();           
+        }
+        
+        public void Ui_useColoring(Data d) {
+            Ui = new UseColoringPanel(d, this);
+            Ui_reset();
+            
+        }
+        
+        public void Ui_reset() {
             content.removeAll();
             content.add(Ui, BorderLayout.PAGE_START);
             revalidate();
             repaint();
         }
-
-    void Ui_reset() {
-            content.removeAll();
-            content.add(Ui, BorderLayout.PAGE_START);
-            revalidate();
-            repaint();
-        
-    }
         
 }

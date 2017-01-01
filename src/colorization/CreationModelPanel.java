@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import net.coobird.thumbnailator.*;
 
 
-class CreationModelPanel extends JPanel {
+class CreationModelPanel extends JPanel implements ColoringAccessColor {
     
     private final MainWindow parent;
     private ColorPanel colors;
@@ -36,7 +36,7 @@ class CreationModelPanel extends JPanel {
     
     
     private void initComponents() {
-        colors = new ColorPanel(true);
+        colors = new ColorPanel(true, null);
         
         coloring = new Coloring(ProcessedImage.copyImage(coloring_empty), this);
         
@@ -51,7 +51,8 @@ class CreationModelPanel extends JPanel {
         this.add(save);
     }
     
-    protected Color getColor() {
+    @Override
+    public Color getColor() {
         return colors.getSelectedColor();
     }
     
@@ -68,7 +69,7 @@ class CreationModelPanel extends JPanel {
             } catch (IOException ex) {
                 Logger.getLogger(CreationModelPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            parent.Ui_reset();
+            parent.Ui_list();
     }
     
 }

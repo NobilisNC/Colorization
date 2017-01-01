@@ -16,9 +16,13 @@ import java.util.*;
 import javax.imageio.*;
 import javax.swing.JComponent;
 
+interface ColoringAccessColor {
+    Color getColor();
+}
+
 class Coloring extends JComponent implements MouseListener {
 	
-        private final CreationModelPanel parent;
+        private final ColoringAccessColor parent;
 	private BufferedImage image;
 	private WritableRaster wraster;
 	private ColorModel color_model;
@@ -26,14 +30,14 @@ class Coloring extends JComponent implements MouseListener {
 
 	
 	
-	public Coloring(CreationModelPanel p) {
+	public Coloring(ColoringAccessColor p) {
 		super();
                 parent = p;
 		image = null;
 		addMouseListener(this);	
 	}
         
-        public Coloring(BufferedImage bi, CreationModelPanel p) {
+        public Coloring(BufferedImage bi, ColoringAccessColor p) {
 		super();
                 parent = p;
 		image = bi;
@@ -102,7 +106,7 @@ class Coloring extends JComponent implements MouseListener {
     	if (x < image.getWidth() && x > 0 && y > 0 && y < image.getHeight()) {
 	    	Object pix = wraster.getDataElements(x, y, null);
 	    	int pix_color = color_model.getRGB(pix);
-	    	
+                                
                 return pix_color == targetColor;
     	} else {
     		return false;

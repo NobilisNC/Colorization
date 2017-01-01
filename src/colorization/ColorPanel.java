@@ -20,14 +20,14 @@ class ColorPanel extends JPanel {
     
     private static int NB_BUTTONS = 10;
     
-    public ColorPanel(boolean modif) {
+    public ColorPanel(boolean modif, int[] palette) {
         super();
         colors = new ColorButton[NB_BUTTONS];
         modifiable = modif;
-        initComponents();
+        initComponents(palette);
     }
     
-    private void initComponents() {
+    private void initComponents(int[] palette) {
         setLayout(new GridLayout(NB_BUTTONS,2));
         
         int[] default_colors = { 0xFFFFFF, // Blanc
@@ -42,11 +42,12 @@ class ColorPanel extends JPanel {
                                  0xDDDDDD, //Gris clair
                                  0xFF3467  // Saumon
                                 };
+        if (palette == null)        
+            setPalette(default_colors);
+        else 
+            setPalette(palette);
         
-        for (int i = 0; i < 10; i++) {
-            colors[i] = new ColorButton(new Color(default_colors[i]), this );
-            add(colors[i]);
-         }
+
         selected = colors[0];      
         colors[0].select();
     }
@@ -67,8 +68,18 @@ class ColorPanel extends JPanel {
         
         for (int i = 0; i < NB_BUTTONS; i++) 
             palette[i] = colors[i].getColor().getRGB();
+        
+        
 
         return palette;
+    }
+    
+    public void setPalette(int[] new_palette) {
+           for (int i = 0; i < 10; i++) {
+            colors[i] = new ColorButton(new Color(new_palette[i]), this );
+            add(colors[i]);
+         }
+        
     }
     
 }
