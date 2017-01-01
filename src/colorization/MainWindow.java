@@ -3,6 +3,7 @@ package colorization;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 import javax.swing.*;
@@ -50,7 +51,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 		content.setLayout(main_layout);
                 
                 
-		repaint();
+		repaint();  
 	}	
 	
         @Override
@@ -81,7 +82,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 	}
 
 	public void Ui_creation(File f) {
-			Ui = new CreationPanel(f, this);
+			Ui = new CreationColoringPanel(f, this);
 			content.removeAll();
 			content.add(Ui);
 			revalidate();
@@ -89,13 +90,21 @@ public class MainWindow extends JFrame implements ActionListener  {
 	}
         
         
-        public void Ui_coloring(String path) {
-            Ui = new ColoringPanel(path, this);
+        public void Ui_coloring(BufferedImage bi) {
+            Ui = new CreationModelPanel(bi, this);
             
             content.removeAll();
             content.add(Ui, BorderLayout.PAGE_START);
             revalidate();
             repaint();
         }
+
+    void Ui_reset() {
+            content.removeAll();
+            content.add(Ui, BorderLayout.PAGE_START);
+            revalidate();
+            repaint();
+        
+    }
         
 }

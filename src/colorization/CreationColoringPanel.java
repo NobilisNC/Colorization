@@ -12,9 +12,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
-class CreationPanel extends JPanel implements PropertyChangeListener, ActionListener {
+
+class CreationColoringPanel extends JPanel implements PropertyChangeListener, ActionListener {
     
         private final MainWindow parent;
 	
@@ -36,7 +36,7 @@ class CreationPanel extends JPanel implements PropertyChangeListener, ActionList
 	private boolean advanced_creation = false;
 	
 	
-	public CreationPanel(File f, MainWindow p) {
+	public CreationColoringPanel(File f, MainWindow p) {
 		super();
                 parent = p;
 		loadImage(f);		
@@ -115,14 +115,11 @@ class CreationPanel extends JPanel implements PropertyChangeListener, ActionList
 		check_advanced = new JCheckBox("Mode avancé (Béta)");
 		check_advanced.addActionListener(this);
                 
-                save = new JButton("Sauvegarder le coloriage");
+                save = new JButton("Passer à la création du model du coloriage");
                 
-                 save.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            save();
-                            
-                        }
-                 });
+                 save.addActionListener((ActionEvent e) -> {
+                     save();
+                });
 
                 tools_panel.add(label_contrast);
                 tools_panel.add(f_contrast);
@@ -141,14 +138,14 @@ class CreationPanel extends JPanel implements PropertyChangeListener, ActionList
         
         
         private void save() {
-            String name = JOptionPane.showInputDialog(this, "Entrez un nom de coloriage :");
+            /*String name = JOptionPane.showInputDialog(this, "Entrez un nom de coloriage :");
             if (name == null) {
                 JOptionPane.showMessageDialog(this, "Erreur de nom", "Erreur",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             File file = new File("/home/nobilis/coding/iut/java/Color/coloriages/" + name);
-            processed_image.saveImage(file);
-            parent.Ui_coloring(file.getAbsolutePath());
+            processed_image.saveImage(file); */
+            parent.Ui_coloring(processed_image.getImage());
         }
         
 	

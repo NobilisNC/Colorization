@@ -7,7 +7,6 @@ package colorization;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,15 +16,19 @@ import javax.swing.JPanel;
 class ColorPanel extends JPanel {
     private ColorButton[] colors;
     private ColorButton selected;
+    private boolean modifiable;
     
-    public ColorPanel() {
+    private static int NB_BUTTONS = 10;
+    
+    public ColorPanel(boolean modif) {
         super();
-        colors = new ColorButton[10];
+        colors = new ColorButton[NB_BUTTONS];
+        modifiable = modif;
         initComponents();
     }
     
     private void initComponents() {
-        setLayout(new GridLayout(10,2));
+        setLayout(new GridLayout(NB_BUTTONS,2));
         
         int[] default_colors = { 0xFFFFFF, // Blanc
                                  0x010101,  // Noir
@@ -57,6 +60,15 @@ class ColorPanel extends JPanel {
         selected.deselect();
         selected = b;
         revalidate();
+    }
+    
+    public int[] getPalette() {
+        int[] palette = new int[NB_BUTTONS];
+        
+        for (int i = 0; i < NB_BUTTONS; i++) 
+            palette[i] = colors[i].getColor().getRGB();
+
+        return palette;
     }
     
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colorings>
+  <coloring>
+    <name>test</name>
+    <path>/home/nobilis/.coloriages/defaults/test.png</path>
+    <model>/home/nobilis/.coloriages/models/test.png</model>
+    <thumbnail>/home/nobilis/.coloriages/thumbnails/test.png</thumbnail>
+    <palette>
+      <color>-1</color>
+      <color>-fefeff</color>
+      <color>-ffff01</color>
+      <color>-ff0100</color>
+      <color>-10000</color>
+      <color>-100</color>
+      <color>-ff0001</color>
+      <color>-ff01</color>
+      <color>-555556</color>
+      <color>-222223</color>
+    </palette>
+  </coloring>
+  <coloring>
+    <name>cheval_test</name>
+    <path>/home/nobilis/.coloriages/defaults/cheval_test.png</path>
+    <model>/home/nobilis/.coloriages/models/cheval_test.png</model>
+    <thumbnail>/home/nobilis/.coloriages/thumbnails/cheval_test.png</thumbnail>
+    <palette>
+      <color>-1</color>
+      <color>-fefeff</color>
+      <color>-ffff01</color>
+      <color>-ff0100</color>
+      <color>-10000</color>
+      <color>-100</color>
+      <color>-ff0001</color>
+      <color>-ff01</color>
+      <color>-555556</color>
+      <color>-222223</color>
+    </palette>
+  </coloring>
+</colorings>

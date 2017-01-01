@@ -11,7 +11,7 @@ class ColorButton extends JComponent implements MouseListener {
 
 	//Attributs
          private final ColorPanel parent; 
-	 private final Color maCouleur;
+	 private Color maCouleur;
          private boolean selected;
          
          private static final int SIZE = 30;
@@ -29,6 +29,10 @@ class ColorButton extends JComponent implements MouseListener {
         
         public Color getColor() {
             return maCouleur;
+        }
+        
+        public void setColor(Color new_c) {
+            maCouleur = new_c;
         }
         
         public void select() {

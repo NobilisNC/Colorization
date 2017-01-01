@@ -16,9 +16,9 @@ import java.util.*;
 import javax.imageio.*;
 import javax.swing.JComponent;
 
-public class Coloring extends JComponent implements MouseListener {
+class Coloring extends JComponent implements MouseListener {
 	
-        private final ColoringPanel parent;
+        private final CreationModelPanel parent;
 	private BufferedImage image;
 	private WritableRaster wraster;
 	private ColorModel color_model;
@@ -26,12 +26,20 @@ public class Coloring extends JComponent implements MouseListener {
 
 	
 	
-	public Coloring(ColoringPanel p) {
+	public Coloring(CreationModelPanel p) {
 		super();
                 parent = p;
 		image = null;
-		addMouseListener(this);
-	
+		addMouseListener(this);	
+	}
+        
+        public Coloring(BufferedImage bi, CreationModelPanel p) {
+		super();
+                parent = p;
+		image = bi;
+                wraster = image.getRaster();
+                color_model = image.getColorModel();
+		addMouseListener(this);	
 	}
 
 	public void loadImage(File file) {
@@ -43,6 +51,10 @@ public class Coloring extends JComponent implements MouseListener {
 			e.printStackTrace();
 		}
 	}
+        
+        public BufferedImage getImage() {
+            return ProcessedImage.copyImage(image);
+        }
         
        public void setColor(Color c) {
             color = c;
