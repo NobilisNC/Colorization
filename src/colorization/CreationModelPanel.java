@@ -38,7 +38,7 @@ class CreationModelPanel extends JPanel {
     private void initComponents() {
         colors = new ColorPanel(true);
         
-        coloring = new Coloring(coloring_empty, this);
+        coloring = new Coloring(ProcessedImage.copyImage(coloring_empty), this);
         
         save = new JButton("Sauvegarder le coloriage");
 
