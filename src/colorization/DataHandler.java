@@ -95,8 +95,8 @@ class DataHandler {
         List colorings = root.getChildren("coloring");
         Vector<Data> datas = new Vector<>();
         
-        for (Object i : colorings) {
-            Element courant = (Element) i;
+        for (Object coloring : colorings) {
+            Element courant = (Element) coloring;
             Data d = new Data();
             d.name = courant.getChild("name").getText();
             d.path_default = courant.getChild("default").getText();
@@ -105,15 +105,11 @@ class DataHandler {
             
             Element palette = courant.getChild("palette");
             d.palette = new int[10];
+            
+            int i = 0;           
             for (Object c : palette.getChildren("color")) {
-                Element color = (Element) c;
-                System.err.println(color.getText() instanceof String);
-                
-                int caca = Integer.parseInt( (String) color.getText());
-                
-
-                
-                
+                Element color = (Element) c;              
+                d.palette[i++] = Integer.parseInt( color.getText());               
             }
             datas.add(d);
         }

@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import net.coobird.thumbnailator.*;
 
 class ProcessedImage extends JComponent {
 
@@ -35,7 +36,7 @@ class ProcessedImage extends JComponent {
 
 	public void loadImage(File file) {
             try {
-                default_image = ImageIO.read(file);
+                default_image = Thumbnails.of(file).size(700, 700).asBufferedImage();
             } catch (IOException ex) {
                 Logger.getLogger(ProcessedImage.class.getName()).log(Level.SEVERE, null, ex);
             }
