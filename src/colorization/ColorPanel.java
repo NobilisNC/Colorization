@@ -6,6 +6,8 @@
 package colorization;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 
@@ -28,7 +30,7 @@ class ColorPanel extends JPanel {
     }
     
     private void initComponents(int[] palette) {
-        setLayout(new GridLayout(NB_BUTTONS,2));
+        setLayout(new GridLayout(NB_BUTTONS, NB_BUTTONS/2));
         
         int[] default_colors = { 0xFFFFFF, // Blanc
                                  0x010101,  // Noir
@@ -37,7 +39,7 @@ class ColorPanel extends JPanel {
                                  0xFF0000, // Rouge
                                  0xFFFF00, // Jaune
                                  0x00FFFF, // Cyan
-                                 0xFF00FF, //Magenta
+                                 0xFF00FF, // Magenta
                                  0xAAAAAA, // Gris 
                                  0xDDDDDD, //Gris clair
                                  0xFF3467  // Saumon
@@ -80,6 +82,15 @@ class ColorPanel extends JPanel {
             add(colors[i]);
          }
         
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Dimension d = new Dimension(this.getWidth()/2, this.getHeight()/NB_BUTTONS/2);
+        for (ColorButton cb : colors) {
+            cb.setSize(d);            
+        }         
     }
     
 }

@@ -20,10 +20,9 @@ interface ColoringAccessColor {
     Color getColor();
 }
 
-class Coloring extends JComponent implements MouseListener {
+class Coloring extends Image implements MouseListener {
 	
         private final ColoringAccessColor parent;
-	private BufferedImage image;
 	private WritableRaster wraster;
 	private ColorModel color_model;
         private Color color;
@@ -31,16 +30,16 @@ class Coloring extends JComponent implements MouseListener {
 	
 	
 	public Coloring(ColoringAccessColor p) {
-		super();
+		super(null);
                 parent = p;
 		image = null;
 		addMouseListener(this);	
 	}
         
         public Coloring(BufferedImage bi, ColoringAccessColor p) {
-		super();
+		super(bi);
                 parent = p;
-		image = bi;
+		//image = bi;
                 wraster = image.getRaster();
                 color_model = image.getColorModel();
 		addMouseListener(this);	
@@ -67,39 +66,6 @@ class Coloring extends JComponent implements MouseListener {
         public void setColor() {
             color = parent.getColor();
         }
-
-	
-        @Override
-	public Dimension getPreferredSize() {
-		if (image == null)
-			return new Dimension(100,100);
-		else 
-			return new Dimension(image.getWidth(),image.getHeight());		
-	}
-	
-        @Override
-	public Dimension getMinimumSize()  {
-		if (image == null) 
-			return new Dimension(100,100);
-		 else 
-			return new Dimension(image.getWidth(),image.getHeight());	
-	}
-	
-        @Override
-	public Dimension getMaximumSize() {
-		if (image == null)
-			return new Dimension(100,100);
-		else 
-			return new Dimension(image.getWidth(),image.getHeight());
-	}
-	
-        @Override
-	protected void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		if(image != null)
-			g.drawImage(image, 0, 0, getWidth(),getHeight(), null);		
-	} 
 	
    // ALGO de Remplissage
     private boolean isTargetColor(int x, int y,int targetColor) {

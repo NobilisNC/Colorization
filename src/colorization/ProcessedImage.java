@@ -13,14 +13,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JComponent;
 import net.coobird.thumbnailator.*;
 
-class ProcessedImage extends JComponent {
+class ProcessedImage extends Image {
 
 	
 	private BufferedImage default_image;
-	private BufferedImage image;
 	private WritableRaster wraster;
 	private ColorModel color_model;
 	
@@ -30,7 +28,7 @@ class ProcessedImage extends JComponent {
 	private int dist_y = 3;
 	
 	public ProcessedImage() {
-		super();
+		super(null);
 		image = null;		
 	}
 
@@ -106,37 +104,6 @@ class ProcessedImage extends JComponent {
             repaint();
 	}
 	
-        @Override
-	public Dimension getPreferredSize() {
-		if (image == null)
-			return new Dimension(100,100);
-		else 
-			return new Dimension(image.getWidth(),image.getHeight());		
-	}
-	
-        @Override
-	public Dimension getMinimumSize()  {
-		if (image == null) 
-			return new Dimension(100,100);
-		 else 
-			return new Dimension(image.getWidth(),image.getHeight());	
-	}
-	
-        @Override
-	public Dimension getMaximumSize() {
-		if (image == null)
-			return new Dimension(100,100);
-		else 
-			return new Dimension(image.getWidth(),image.getHeight());
-	}
-	
-        @Override
-	protected void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		if(image != null)
-			g.drawImage(image, 0, 0, getWidth(),getHeight(), null);		
-	} 
 	
         /* ***  *** FILTRES *** *** */
         

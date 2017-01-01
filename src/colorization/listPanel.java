@@ -13,6 +13,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,6 +34,7 @@ class listPanel extends JPanel implements itemClicked {
         parent = _parent;
         
         
+        
         panel = new JPanel();
         panel.setLayout(new GridLayout(3, datas.size()));
         
@@ -46,7 +48,8 @@ class listPanel extends JPanel implements itemClicked {
         
         
         this.add(spane); 
-        
+        this.add(Box.createHorizontalStrut(1100));
+        this.add(Box.createVerticalStrut(-1000));
         repaint();
     }
 

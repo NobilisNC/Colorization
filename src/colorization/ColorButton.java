@@ -71,7 +71,7 @@ class ColorButton extends JComponent implements MouseListener {
                 
                 if (selected) {
                     g.setColor(Color.black);
-                    g.drawRect(0, 0, SIZE-1, SIZE-1);
+                    g.drawRect(0, 0, SIZE, SIZE);
                 }
                     
 	}	
