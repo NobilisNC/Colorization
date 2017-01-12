@@ -19,14 +19,12 @@ import javax.swing.JPanel;
 class ColorPanel extends JPanel {
     private ColorButton[] colors;
     private ColorButton selected;
-    private boolean modifiable;
     
     private static int NB_BUTTONS = 10;
     
-    public ColorPanel(boolean modif, int[] palette) {
+    public ColorPanel(int[] palette) {
         super();
-        colors = new ColorButton[NB_BUTTONS];
-        modifiable = modif;
+        colors = new ColorButton[NB_BUTTONS];;
         initComponents(palette);
     }
     

@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
@@ -37,8 +38,7 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
     
     
     private void initComponents() {
-        colors = new ColorPanel(true, null);
-        
+        colors = new ColorPanel(null);
         coloring = new Coloring(ProcessedImage.copyImage(coloring_empty), this);
         
         save = new JButton("Sauvegarder le coloriage");
@@ -52,10 +52,19 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
             chooseColor();
         });
         
-        this.add(colors);
-        this.add(coloring);
-        this.add(save);
-        this.add(changeColor);
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.add(changeColor);
+        buttonsPanel.add(save);
+        
+        JPanel main = new JPanel();
+        main.add(colors);
+        main.add(coloring);
+        
+        this.add(buttonsPanel);
+        this.add(main);      
+        
     }
     
     @Override
@@ -82,6 +91,15 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
     public void chooseColor() {
             Color newColor;
             newColor = JColorChooser.showDialog(this, "Choisir une couleur", getColor() );
+            
+            System.err.println(newColor.getRGB() + "  " + colors.getSelectedColor().getRGB() + "   " +  0xFFFFFF);
+            
+            if (newColor.getRGB() == Image.BLACK) 
+                newColor = new Color(254,254,254);
+   
+            
+            coloring.replaceColor( getColor().getRGB() , newColor.getRGB());
+            
             colors.setSelectedColor(newColor);            
         }
         

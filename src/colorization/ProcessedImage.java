@@ -14,16 +14,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import net.coobird.thumbnailator.*;
+import options.Options;
 
 class ProcessedImage extends Image {
 
 	
 	private BufferedImage default_image;
 	private WritableRaster wraster;
-	private ColorModel color_model;
+	//private ColorModel color_model;
 	
 	private float contrast_1 = 1.0f;
-	private float alpha = 0.9f;
+        protected float alpha = 0.9f;
 	private int dist_x = 3;
 	private int dist_y = 3;
 	
@@ -34,7 +35,7 @@ class ProcessedImage extends Image {
 
 	public void loadImage(File file) {
             try {
-                default_image = Thumbnails.of(file).size(700, 700).asBufferedImage();
+                default_image = Thumbnails.of(file).size(Options.dimensionMaxColoring.width, Options.dimensionMaxColoring.height).asBufferedImage();
             } catch (IOException ex) {
                 Logger.getLogger(ProcessedImage.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -54,14 +55,15 @@ class ProcessedImage extends Image {
         }
 	
 	public float getContrast1() { return contrast_1;}
-	public float getAlpha() { return alpha;}
 	public float getDistX() { return dist_x;}
 	public float getDistY() { return dist_y;}
 	
 	public void setContrast1(float c) { contrast_1 = c;}
-	public void setAlpha(float a) { alpha = a;}
 	public void setDistX(int d) { dist_x = d;}
 	public void setDistY(int d) { dist_y = d;}
+        
+         public float getAlpha() { return alpha;}
+        public void setAlpha(float a) { alpha = a;}
 	
 	public static BufferedImage copyImage(BufferedImage source){
 	    BufferedImage b = new BufferedImage(source.getWidth(), source.getHeight(), source.getType());
@@ -79,12 +81,12 @@ class ProcessedImage extends Image {
 		Graphics2D surfaceImg = image.createGraphics();
 		surfaceImg.drawImage(default_image, null, null);  
 		wraster = image.getRaster();
-    	color_model = image.getColorModel();
+                //color_model = image.getColorModel();
 	}
 
 	public void baseCreation() {
 		setWorkCopy();
-		alpha();
+		alpha(alpha);
 		repaint();
 	}
 	
@@ -96,7 +98,7 @@ class ProcessedImage extends Image {
             contrast.filter(image,image);   	
             sobel();
             reversed();
-            alpha();
+            alpha(alpha);
 
             line_marker_x();
             line_marker_y();
@@ -197,27 +199,7 @@ class ProcessedImage extends Image {
 		
 	}
 
-	//Image comprends pixel [0,0,0,255] ou [255,255,255,255]
-	protected void alpha()
-	{ 
-		int precision = (int) (255 * alpha);
-		
-		Object white = color_model.getDataElements(Color.white.getRGB(), null);
-		Object black = color_model.getDataElements(Color.black.getRGB(), null);
-		
-		for(int y = 0; y < image.getHeight(); y++) {
-			for (int x = 0; x < image.getWidth(); x++) {
-				//On teste si la couleur x,y est proche de zéro 
-				Object pix = wraster.getDataElements(x, y, null);
-				
-				if (color_model.getRed(pix) < precision && color_model.getGreen(pix) < precision && color_model.getBlue(pix) < precision )
-					wraster.setDataElements(x, y, black);
-				else
-					wraster.setDataElements(x, y, white);						
-			}	
-		}
-		
-	}
+
 	
 	//Passe l'image en niveau de gris
 	protected void gray() {
@@ -271,6 +253,30 @@ class ProcessedImage extends Image {
 			}
 				
 		}   
+        
+        //Image comprends pixel [0,0,0,255] ou [255,255,255,255]
+	public void alpha(float alpha)
+	{ 
+                WritableRaster wraster = image.getRaster();
+                ColorModel color_model = image.getColorModel();
+                
+		int precision = (int) (255 * alpha);
+		
+		Object white = color_model.getDataElements(0xFFFFFF, null);
+		Object black = color_model.getDataElements(BLACK, null);
+		
+		for(int y = 0; y < image.getHeight(); y++) {
+			for (int x = 0; x < image.getWidth(); x++) {
+				//On teste si la couleur x,y est proche de zéro 
+				Object pix = wraster.getDataElements(x, y, null);
+				
+				if (color_model.getRed(pix) < precision && color_model.getGreen(pix) < precision && color_model.getBlue(pix) < precision )
+					wraster.setDataElements(x, y, black);
+				else
+					wraster.setDataElements(x, y, white);						
+			}	
+		}
+        }
 
 }
 

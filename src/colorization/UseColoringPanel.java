@@ -34,7 +34,7 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
     }
 
     private void initComponents(Data data) {
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        
         
         coloring = new Coloring(this);
   
@@ -45,13 +45,16 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
         } catch(IOException e) {
             
         }
+        //coloring.alpha(0.8f);
         
-        colors = new ColorPanel(false, data.palette);
+        colors = new ColorPanel(data.palette);
         
         finish = new JButton("Valider le coloriage");
          finish.addActionListener((ActionEvent e) -> {
             finish();
         });
+         
+         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
          finish.setAlignmentX(Component.CENTER_ALIGNMENT);
          
          JPanel panel = new JPanel();

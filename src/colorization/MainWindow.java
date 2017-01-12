@@ -40,16 +40,16 @@ public class MainWindow extends JFrame implements ActionListener  {
 		menu_file.setText("Fichier");
 		menu_file.add(item_load);
 		item_load.addActionListener(this);
-		item_load.setText("Charger une image");
+		item_load.setText("Créer un coloriage");
 		menu_file.addSeparator();
 		menu_file.add(item_exit);
 		item_exit.addActionListener(this);
 		item_exit.setText("Quitter");
 		
                 //Centre
-		
 		content = getContentPane();
-		content.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+                
                 
                 Ui_list();
                 
@@ -85,10 +85,10 @@ public class MainWindow extends JFrame implements ActionListener  {
 	}
 
 	public void Ui_creation(File f) {
-			Ui = new CreationColoringPanel(f, this);
-			Ui_reset();
+            Ui = new CreationColoringPanel(f, this);
+            Ui_reset();
 	}
-        
+    
         
         public void Ui_colorModel(BufferedImage bi) {
             Ui = new CreationModelPanel(bi, this);
@@ -97,7 +97,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 
 
     
-        public void Ui_list() {
+        public void Ui_list() {       
             DataHandler d = new DataHandler();
             Ui = new listPanel(d.list(), this);
             
@@ -112,7 +112,7 @@ public class MainWindow extends JFrame implements ActionListener  {
         
         public void Ui_reset() {
             content.removeAll();
-            content.add(Ui, BorderLayout.PAGE_START);
+            content.add(Ui);
             revalidate();
             repaint();
         }

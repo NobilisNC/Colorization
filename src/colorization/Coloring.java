@@ -3,8 +3,6 @@ package colorization;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -14,7 +12,6 @@ import java.io.*;
 import java.util.*;
 
 import javax.imageio.*;
-import javax.swing.JComponent;
 
 interface ColoringAccessColor {
     Color getColor();
@@ -34,7 +31,8 @@ class Coloring extends Image implements MouseListener {
                 parent = p;
 		image = null;
 		addMouseListener(this);	
-	}
+        }
+        
         
         public Coloring(BufferedImage bi, ColoringAccessColor p) {
 		super(bi);
@@ -72,6 +70,8 @@ class Coloring extends Image implements MouseListener {
     	if (x < image.getWidth() && x > 0 && y > 0 && y < image.getHeight()) {
 	    	Object pix = wraster.getDataElements(x, y, null);
 	    	int pix_color = color_model.getRGB(pix);
+                
+
                                 
                 return pix_color == targetColor;
     	} else {
@@ -79,14 +79,34 @@ class Coloring extends Image implements MouseListener {
     	}
     }
     
+    private boolean isBlack(int x, int y) {
+    	if (x < image.getWidth() && x > 0 && y > 0 && y < image.getHeight()) {
+	    	Object pix = wraster.getDataElements(x, y, null);
+	    	int pix_color = color_model.getRGB(pix);
+                Object pix_black_o = color_model.getDataElements(BLACK, null);
+                int pix_black = color_model.getRGB(pix_black_o);
+                
+                if(pix_color == pix_black)
+                    return true;
+                else
+                    return false;
+        }
+            return false;
+    }
+    
+    
 
     
     private void color(int x,int y) {
+        
+        if (isBlack(x, y))
+            return;
     	
     	Object root_pix = wraster.getDataElements(x, y, null);
     	int targetColor = color_model.getRGB(root_pix);
-    	if (targetColor == Color.black.getRGB())
-    		return;
+        
+
+        
         if (targetColor == color.getRGB())
                 return;
     	
@@ -118,15 +138,16 @@ class Coloring extends Image implements MouseListener {
 	    		while(e_x < image.getWidth() && isTargetColor(e_x,e_y,targetColor))
 	    			e_x++;
 	    		
-	    		for(int p = w_x; p < e_x; p++) {
+	    		for(int p = ++w_x; p < e_x; p++) {
 	    			if (p > 0 && p < image.getWidth())
-	    				wraster.setDataElements(p, current_y,  new_color);
-	    			if (current_y-1 > 0 && current_y-1 < image.getHeight() && isTargetColor(p, current_y-1, targetColor)) {
+                                            wraster.setDataElements(p, current_y,  new_color);
+                                
+	    			if (current_y-1 > 0 && (current_y-1 < image.getHeight() && isTargetColor(p, current_y-1, targetColor))) {
 	    				P_x.push(p);
 	    				P_y.push(current_y-1);
 	    			}
 	    			
-	    			if (current_y+1 > 0 && current_y+1 < image.getHeight() && isTargetColor(p, current_y+1, targetColor)) {
+	    			if (current_y+1 > 0 && (current_y+1 < image.getHeight() && isTargetColor(p, current_y+1, targetColor))) {
 	    				P_x.push(p);
 	    				P_y.push(current_y+1);
 	    			}    			
@@ -135,6 +156,22 @@ class Coloring extends Image implements MouseListener {
     		repaint();
     	}
      }
+    
+    
+    
+    public void replaceColor(int old_c, int new_c) {
+        Object new_color = color_model.getDataElements(new_c,null);
+        
+        
+        for(int y = 0; y < image.getHeight(); y++ )
+            for (int x = 0; x < image.getWidth(); x++)
+                if (image.getRGB(x, y) == old_c) {
+                    wraster.setDataElements(x, y, new_color);
+                }
+        
+        repaint();
+        
+    }
     
     
     /* *** *** SLOTS *** *** */

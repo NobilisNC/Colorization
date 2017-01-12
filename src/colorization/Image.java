@@ -3,15 +3,23 @@ package colorization;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import javax.swing.JComponent;
 
 
 class Image extends JComponent {
     protected BufferedImage image;
+    static final int BLACK = 0x000000; 
+    
+    
+    
     
     Image(BufferedImage img) {
         image = img;       
     }
+    
+
     
     @Override
 	public Dimension getPreferredSize() {
@@ -59,5 +67,6 @@ class Image extends JComponent {
             
             return (int) ((double)(nb_pix - nb_differents_pix) / nb_pix * 100.d);            
         }
+        
     
 }

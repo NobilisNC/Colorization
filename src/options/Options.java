@@ -25,9 +25,9 @@ public class Options {
                                                                 );
     
     public static String pathToXmlFile = "colorings.xml";
-    public static String directoryThumbnails = ".colorings/thumbnails";
-    public static String directoryDefaults = ".colorings/defaults";
-    public static String directoryModels = ".colorings/models";
+    public static String directoryThumbnails = ".colorings/thumbnails/";
+    public static String directoryDefaults = ".colorings/defaults/";
+    public static String directoryModels = ".colorings/models/";
         
     
     
