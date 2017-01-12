@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 /**
@@ -30,7 +31,7 @@ class ColorPanel extends JPanel {
     }
     
     private void initComponents(int[] palette) {
-        setLayout(new GridLayout(NB_BUTTONS, NB_BUTTONS/2));
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         
         int[] default_colors = { 0xFFFFFF, // Blanc
                                  0x010101,  // Noir
@@ -57,6 +58,11 @@ class ColorPanel extends JPanel {
     public Color getSelectedColor() {
         return selected.getColor();
     }
+    
+     public void setSelectedColor(Color c) {
+        selected.setColor(c);
+        repaint();
+     }
     
     public void setSelected(ColorButton b) {
         //Deselection de l'ancienne couleur :
@@ -86,11 +92,7 @@ class ColorPanel extends JPanel {
     
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Dimension d = new Dimension(this.getWidth()/2, this.getHeight()/NB_BUTTONS/2);
-        for (ColorButton cb : colors) {
-            cb.setSize(d);            
-        }         
+        super.paintComponent(g);      
     }
     
 }

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.*;
+import options.Options;
 
 
 
@@ -14,7 +15,7 @@ class ColorButton extends JComponent implements MouseListener {
 	 private Color maCouleur;
          private boolean selected;
          
-         private static final int SIZE = 30;
+        
 	 
 	
 	
@@ -47,18 +48,18 @@ class ColorButton extends JComponent implements MouseListener {
 	
          @Override
 	public Dimension getPreferredSize() {
-		return new Dimension(SIZE,SIZE);
+		return Options.dimensionColorButton;
      	}
 	
          @Override
 	public Dimension getMinimumSize()  {
-		return new Dimension(SIZE,SIZE);	
+		return Options.dimensionColorButton;	
 		
 	}
 	
          @Override
 	public Dimension getMaximumSize() {
-		return new Dimension(SIZE,SIZE);
+		return Options.dimensionColorButton;
 		
 	}
 	
@@ -67,11 +68,11 @@ class ColorButton extends JComponent implements MouseListener {
 		super.paintComponents(g);
 		
 		g.setColor(maCouleur);
-		g.fillRect(0, 0, SIZE, SIZE);	
+		g.fillRect(0, 0, Options.dimensionColorButton.width, Options.dimensionColorButton.height);	
                 
                 if (selected) {
                     g.setColor(Color.black);
-                    g.drawRect(0, 0, SIZE, SIZE);
+                    g.drawRect(0, 0, Options.dimensionColorButton.width - 1, Options.dimensionColorButton.height - 1);
                 }
                     
 	}	

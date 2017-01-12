@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import net.coobird.thumbnailator.*;
 
@@ -46,9 +47,15 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
             save();
         });
         
+        JButton changeColor = new JButton("Choisir une couleur");
+        changeColor.addActionListener((ActionEvent e) -> {
+            chooseColor();
+        });
+        
         this.add(colors);
         this.add(coloring);
         this.add(save);
+        this.add(changeColor);
     }
     
     @Override
@@ -71,5 +78,12 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
             }
             parent.Ui_list();
     }
+    
+    public void chooseColor() {
+            Color newColor;
+            newColor = JColorChooser.showDialog(this, "Choisir une couleur", getColor() );
+            colors.setSelectedColor(newColor);            
+        }
+        
     
 }

@@ -138,13 +138,6 @@ class CreationColoringPanel extends JPanel implements PropertyChangeListener, Ac
         
         
         private void save() {
-            /*String name = JOptionPane.showInputDialog(this, "Entrez un nom de coloriage :");
-            if (name == null) {
-                JOptionPane.showMessageDialog(this, "Erreur de nom", "Erreur",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            File file = new File("/home/nobilis/coding/iut/java/Color/coloriages/" + name);
-            processed_image.saveImage(file); */
             parent.Ui_colorModel(processed_image.getImage());
         }
         
@@ -188,6 +181,7 @@ class CreationColoringPanel extends JPanel implements PropertyChangeListener, Ac
 		
 	}
         
+   
         
 	
 

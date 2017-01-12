@@ -45,11 +45,10 @@ class listPanel extends JPanel implements itemClicked {
         
         spane = new JScrollPane(panel);
         spane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        spane.setSize(spane.getMaximumSize());
         
         
         this.add(spane); 
-        this.add(Box.createHorizontalStrut(1100));
-        this.add(Box.createVerticalStrut(-1000));
         repaint();
     }
 

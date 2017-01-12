@@ -8,6 +8,7 @@ import java.io.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import options.Options;
 
 
 public class MainWindow extends JFrame implements ActionListener  {
@@ -23,7 +24,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 	
 	public MainWindow(String title) {
 		super(title);
-		setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+		setSize(Options.dimensionScreen.width, Options.dimensionScreen.height);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
@@ -46,12 +47,13 @@ public class MainWindow extends JFrame implements ActionListener  {
 		item_exit.setText("Quitter");
 		
                 //Centre
-		BorderLayout main_layout = new BorderLayout();
+		
 		content = getContentPane();
-		content.setLayout(main_layout);
+		content.setLayout(new FlowLayout(FlowLayout.LEFT));
                 
                 Ui_list();
                 
+                revalidate();
 		repaint();  
 	}	
 	

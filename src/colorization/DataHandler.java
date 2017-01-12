@@ -9,6 +9,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import options.Options;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
@@ -18,7 +19,7 @@ import org.jdom2.output.XMLOutputter;
 class DataHandler {
     
         
-    private static final String PATH = "/home/nobilis/.coloriages/";
+    
    
     private Element root = null;
     private org.jdom2.Document document = null;
@@ -27,7 +28,7 @@ class DataHandler {
     public DataHandler() {    
         SAXBuilder sxb = new SAXBuilder();
         try {
-            document = sxb.build(new File("/home/nobilis/coding/iut/java/Color/test.xml"));
+            document = sxb.build(new File(Options.pathToXmlFile));
         } catch (JDOMException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -37,9 +38,9 @@ class DataHandler {
     }
     
     public void saveColoring(String name, int[] palette, BufferedImage default_c, BufferedImage model_c, BufferedImage thumbnail_c) {
-        String path_default = PATH + "defaults/" + name + ".png";
-        String path_model = PATH + "models/" + name + ".png";
-        String path_thumbnail = PATH + "thumbnails/" + name + ".png";
+        String path_default = Options.directoryDefaults + name + ".png";
+        String path_model = Options.directoryModels + name + ".png";
+        String path_thumbnail = Options.directoryThumbnails + name + ".png";
         File file_default = new File(path_default);
         File file_model = new File(path_model);
         File file_thumbnail = new File(path_thumbnail);
@@ -82,7 +83,7 @@ class DataHandler {
         root.addContent(coloring);
         XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
         try {
-            sortie.output(document, new FileOutputStream("/home/nobilis/coding/iut/java/Color/test.xml"));
+            sortie.output(document, new FileOutputStream(Options.pathToXmlFile));
         } catch (IOException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }

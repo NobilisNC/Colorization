@@ -43,5 +43,21 @@ class Image extends JComponent {
 		if(image != null)
 			g.drawImage(image, 0, 0, getWidth(),getHeight(), null);		
 	} 
+        
+        public int compareTo(Image other) {
+            if (image.getWidth() != other.image.getWidth() || image.getHeight() != other.image.getHeight())
+                     return 0;
+            
+            int nb_differents_pix = 0;
+            for(int y = 0; y < image.getHeight(); y++ )
+                for(int x = 0; x < image.getWidth(); x++ )
+                    if(image.getRGB(x, y) != other.image.getRGB(x,y))
+                        nb_differents_pix++;
+            
+             
+            int nb_pix = image.getHeight()*image.getWidth();
+            
+            return (int) ((double)(nb_pix - nb_differents_pix) / nb_pix * 100.d);            
+        }
     
 }

@@ -2,15 +2,19 @@ package colorization;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.coobird.thumbnailator.*;
+import options.Options;
 
 class UseColoringPanel extends JPanel implements ColoringAccessColor {
     
@@ -30,13 +34,14 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
     }
 
     private void initComponents(Data data) {
-        setLayout(new BorderLayout());
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         
         coloring = new Coloring(this);
-        File f = new File(data.path_default);
-        coloring.loadImage(f);
+  
+        
         try {
-            model = new Image(Thumbnails.of(data.path_model).size(700,700).asBufferedImage());
+            model = new Image(Thumbnails.of(data.path_model).size(Options.dimensionMaxColoring.width, Options.dimensionMaxColoring.height).asBufferedImage());
+            coloring = new Coloring(Thumbnails.of(data.path_default).size(Options.dimensionMaxColoring.width, Options.dimensionMaxColoring.height).asBufferedImage(), this);
         } catch(IOException e) {
             
         }
@@ -47,13 +52,18 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
          finish.addActionListener((ActionEvent e) -> {
             finish();
         });
+         finish.setAlignmentX(Component.CENTER_ALIGNMENT);
          
+         JPanel panel = new JPanel();
+         panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+         
+         this.add(finish);
         
-         this.add(model, BorderLayout.LINE_START);
-         this.add(colors, BorderLayout.CENTER);
-         this.add(coloring, BorderLayout.LINE_END);
+         panel.add(coloring);
+         panel.add(colors);
+         panel.add(model);
          
-         this.add(finish, BorderLayout.PAGE_START);
+         this.add(panel);
          
          repaint();            
     }
@@ -64,6 +74,9 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
     }
     
     private void finish() {
+        JOptionPane.showMessageDialog(this, "Votre score : " + model.compareTo(coloring) +"%");
+        
+        parent.Ui_list();
         
     }
     
