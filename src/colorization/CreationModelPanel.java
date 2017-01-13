@@ -87,6 +87,8 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
             Color newColor;
             newColor = JColorChooser.showDialog(this, "Choisir une couleur", getColor() );
                         
+            System.err.println(Color.BLACK.getRGB() + "   " + Image.BLACK );
+            
             if (newColor.getRGB() == Image.BLACK) 
                 newColor = new Color(0x010101);
             

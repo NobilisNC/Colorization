@@ -17,7 +17,7 @@ class Image extends JComponent {
     
     protected BufferedImage image;
     //Color of black used to color lines
-    static final int BLACK = 0x010102; 
+    static final int BLACK = Color.BLACK.getRGB(); 
   
     Image(BufferedImage img) {
         image = img;       
