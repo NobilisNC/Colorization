@@ -131,13 +131,18 @@ class DataHandler {
             d.path_thumbnail = courant.getChild("thumbnail").getText();
             
             Element palette = courant.getChild("palette");
-            d.palette = new int[10];
+            d.palette = new int[20];
             
             int i = 0;           
             for (Object c : palette.getChildren("color")) {
                 Element color = (Element) c;              
                 d.palette[i++] = Integer.parseInt( color.getText());               
             }
+            int[] tmp = d.palette;
+            d.palette = new int[i];
+            for (int o = 0; o < i; o++)
+                d.palette[o] = tmp[o];
+            
             datas.add(d);
         }
         return datas;                

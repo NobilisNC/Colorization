@@ -6,6 +6,7 @@
  */
 package colorization;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -16,7 +17,7 @@ class Image extends JComponent {
     
     protected BufferedImage image;
     //Color of black used to color lines
-    static final int BLACK = 0x000000; 
+    static final int BLACK = 0x010102; 
   
     Image(BufferedImage img) {
         image = img;       
@@ -58,13 +59,16 @@ class Image extends JComponent {
                  return 0;
 
         int nb_differents_pix = 0;
+        int nb_pix_black = 0;
         for(int y = 0; y < image.getHeight(); y++ )
-            for(int x = 0; x < image.getWidth(); x++ )
+            for(int x = 0; x < image.getWidth(); x++ ) 
                 if(image.getRGB(x, y) != other.image.getRGB(x,y))
                     nb_differents_pix++;
+                else if (image.getRGB(x, y) == Color.black.getRGB())
+                    nb_pix_black++;
 
-
-        int nb_pix = image.getHeight()*image.getWidth();
+        
+        int nb_pix = image.getHeight()*image.getWidth() - nb_pix_black;
 
         return (int) ((double)(nb_pix - nb_differents_pix) / nb_pix * 100.d);            
     }

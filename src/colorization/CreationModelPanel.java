@@ -88,12 +88,17 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
             newColor = JColorChooser.showDialog(this, "Choisir une couleur", getColor() );
                         
             if (newColor.getRGB() == Image.BLACK) 
-                newColor = new Color(254,254,254);
-   
+                newColor = new Color(0x010101);
             
-            coloring.replaceColor( getColor().getRGB() , newColor.getRGB());
-            
-            colors.setSelectedColor(newColor);            
+            if (!colors.hasColor(newColor)) {            
+                coloring.replaceColor( getColor().getRGB() , newColor.getRGB());
+                colors.setSelectedColor(newColor); 
+            } else {
+                JOptionPane.showMessageDialog(this,
+                                                "Cette couleur est déjà dans la palette",
+                                                "Erreur",
+                                                JOptionPane.ERROR_MESSAGE);
+            }
         }
         
     

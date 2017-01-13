@@ -20,6 +20,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -81,6 +82,7 @@ class ItemList extends JPanel implements MouseListener {
     
     public ItemList(Data d, itemClicked list) {
         super();
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
        data = d;
        parent = list;
        File f = new File(data.path_thumbnail);

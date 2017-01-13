@@ -25,6 +25,7 @@ public class MainWindow extends JFrame implements ActionListener  {
 	private JMenu menu_file = null;
 	private JMenuItem item_load = null;
 	private JMenuItem item_exit = null;
+        private JMenuItem item_home = null;
 	private JPanel Ui = null;
 		
 	
@@ -38,16 +39,24 @@ public class MainWindow extends JFrame implements ActionListener  {
 		menu_file = new JMenu();
 		item_load = new JMenuItem();
 		item_exit = new JMenuItem();
+                item_home = new JMenuItem();
 		
 		
 		//Menu Bar
 		setJMenuBar(menuBar);
 		menuBar.add(menu_file);
-		menu_file.setText("Fichier");
+                menu_file.setText("Fichier");
+                
+                menu_file.add(item_home);
+                item_home.addActionListener(this);
+                item_home.setText("Accueil");
+		
 		menu_file.add(item_load);
 		item_load.addActionListener(this);
 		item_load.setText("Créer un coloriage");
+                
 		menu_file.addSeparator();
+                
 		menu_file.add(item_exit);
 		item_exit.addActionListener(this);
 		item_exit.setText("Quitter");
@@ -74,20 +83,22 @@ public class MainWindow extends JFrame implements ActionListener  {
 			fc.setFileFilter(filter);
 			int returnVal = fc.showOpenDialog(this);
 
-	        if (returnVal == JFileChooser.APPROVE_OPTION) {
-   	
-	            File file = fc.getSelectedFile();
-	        	Ui_creation(file);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
 
-	        }
-	        //Permet d'afficher l'image en dimension native
-	        content.revalidate();
-	        content.repaint();
-	        repaint();
+                        File file = fc.getSelectedFile();
+                            Ui_creation(file);
+
+                    }
+                    //Permet d'afficher l'image en dimension native
+                    content.revalidate();
+                    content.repaint();
+                    repaint();
 					
 		} else if (cliqueMenu.getSource().equals(item_exit)) {
 			dispose();
-		}
+		} else if (cliqueMenu.getSource().equals(item_home)) {
+                    Ui_list();
+                }
 	}
 
 	public void Ui_creation(File f) {
