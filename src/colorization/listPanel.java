@@ -6,10 +6,6 @@
  *
  *
  */
-
-
-
-
 package colorization;
 
 import java.awt.BorderLayout;
@@ -24,12 +20,16 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+
+/*
+ *
+ * Provide interface for itemClicked callback
+ *
+*/
 interface itemClicked {
     void select(Data data);
 }
@@ -72,8 +72,6 @@ class listPanel extends JPanel implements itemClicked {
     public void select(Data d) {
         parent.Ui_useColoring(d);        
     }
-    
-    
 }
 
 class ItemList extends JPanel implements MouseListener {
@@ -94,39 +92,31 @@ class ItemList extends JPanel implements MouseListener {
             Logger.getLogger(ItemList.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
-        
         addMouseListener(this);
         JLabel name = new JLabel(data.name);
-  
-        
-        
-
-        
-        
+ 
         this.add(image);
         this.add(name);
         
     }
     
-
-    
     @Override
-	public Dimension getPreferredSize() {
-		return new Dimension(image.getWidth(),image.getHeight());
-		
-	}
+    public Dimension getPreferredSize() {
+        return new Dimension(image.getWidth(),image.getHeight());
+
+    }
 	
-         @Override
-	public Dimension getMinimumSize()  {
-		return new Dimension(image.getWidth(),image.getHeight());
-		
-	}
-	
-         @Override
-	public Dimension getMaximumSize() {
-		return new Dimension(image.getWidth(),image.getHeight());
-		
-	}
+    @Override
+   public Dimension getMinimumSize()  {
+        return new Dimension(image.getWidth(),image.getHeight());
+
+   }
+
+    @Override
+   public Dimension getMaximumSize() {
+        return new Dimension(image.getWidth(),image.getHeight());
+
+   }
 
     @Override
     public void mouseClicked(MouseEvent me) {

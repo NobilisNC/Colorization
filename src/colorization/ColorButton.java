@@ -1,3 +1,7 @@
+/*
+ * This class provides a colored clickable Button
+ *
+ */
 package colorization;
 
 import java.awt.*;
@@ -14,10 +18,6 @@ class ColorButton extends JComponent implements MouseListener {
          private final ColorPanel parent; 
 	 private Color maCouleur;
          private boolean selected;
-         
-        
-	 
-	
 	
 	//Methods
 	public ColorButton(Color color, ColorPanel p) {

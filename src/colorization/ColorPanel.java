@@ -17,7 +17,7 @@ class ColorPanel extends JPanel {
     private ColorButton[] colors;
     private ColorButton selected;
     
-    private static int NB_BUTTONS_DEFAULT = 20;
+    private static int NB_BUTTONS = 10;
     
     public ColorPanel(int[] palette) {
         super();

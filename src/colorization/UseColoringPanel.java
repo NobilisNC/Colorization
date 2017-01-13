@@ -5,9 +5,6 @@
  * Its allows to check if the coloring is the same as its model.
  *
  */
-
-
-
 package colorization;
 
 import java.awt.Color;
@@ -41,8 +38,7 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
     }
 
     private void initComponents(Data data) {
-        
-        
+                
         coloring = new Coloring(this);
   
         
@@ -52,8 +48,7 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
         } catch(IOException e) {
             
         }
-        //coloring.alpha(0.8f);
-        
+                
         colors = new ColorPanel(data.palette);
         
         finish = new JButton("Valider le coloriage");
@@ -78,10 +73,12 @@ class UseColoringPanel extends JPanel implements ColoringAccessColor {
          repaint();            
     }
 
+        
     @Override
     public Color getColor() {
         return colors.getSelectedColor();
     }
+    
     
     private void finish() {
         JOptionPane.showMessageDialog(this, "Votre score : " + model.compareTo(coloring) +"%");

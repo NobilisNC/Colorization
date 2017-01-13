@@ -5,9 +5,6 @@
  * This class uses the "JDOM API" (see http://www.jdom.org/ for more details)
  *
  */
-
-
-
 package colorization;
 
 import java.awt.image.BufferedImage;

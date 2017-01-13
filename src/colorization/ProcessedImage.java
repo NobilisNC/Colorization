@@ -8,10 +8,6 @@
  *      - Gray Mode     
  * 
  */
-
-
-
-
 package colorization;
 
 import java.awt.Graphics;
