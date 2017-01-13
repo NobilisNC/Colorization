@@ -1,20 +1,32 @@
+/* 
+ * This class displays the list of coloring.
+ * Each Item is clickable.
+ * 
+ *
+ *
+ *
+ */
+
+
+
+
 package colorization;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.ScrollPane;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.JComponent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -39,16 +51,20 @@ class listPanel extends JPanel implements itemClicked {
         panel.setLayout(new GridLayout(3, datas.size()));
         
         datas.stream().forEach((d) -> { 
-            panel.add(new ItemList(d, this));
+            ItemList item = new ItemList(d, this);
+            item.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+            panel.add(item);
         });
         
         
         spane = new JScrollPane(panel);
         spane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        spane.setSize(spane.getMaximumSize());
+        //spane.setSize(parent.getSize());
+        spane.revalidate();
         
+        setLayout(new BorderLayout());
         
-        this.add(spane); 
+        this.add(spane, BorderLayout.CENTER); 
         repaint();
     }
 
@@ -60,30 +76,39 @@ class listPanel extends JPanel implements itemClicked {
     
 }
 
-class ItemList extends JComponent implements MouseListener {
+class ItemList extends JPanel implements MouseListener {
     Data data;
     itemClicked parent;
-    BufferedImage image;   
+    Image image;   
     
     public ItemList(Data d, itemClicked list) {
         super();
        data = d;
        parent = list;
        File f = new File(data.path_thumbnail);
+       
+        
         try {
-            image = ImageIO.read(f);
+            image = new Image(ImageIO.read(f));          
         } catch (IOException ex) {
             Logger.getLogger(ItemList.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
+        
         addMouseListener(this);
+        JLabel name = new JLabel(data.name);
+  
+        
+        
+
+        
+        
+        this.add(image);
+        this.add(name);
+        
     }
     
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
-    }
+
     
     @Override
 	public Dimension getPreferredSize() {

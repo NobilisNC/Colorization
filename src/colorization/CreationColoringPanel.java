@@ -1,3 +1,9 @@
+/* 
+ * This class provides functionalities to create the coloring.
+ *
+ * It allows to parameter filters of ProcessedImage Class
+ *
+*/
 package colorization;
 
 import java.awt.event.ActionEvent;

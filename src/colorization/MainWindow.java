@@ -1,3 +1,9 @@
+/*
+ * This class is the Main window of the application
+ * Contains a JPanel UI which contain the actual Ui to display;
+ *
+ *
+ */
 package colorization;
 
 import java.awt.*;

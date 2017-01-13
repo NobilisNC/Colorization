@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class provides functionalities to color the model of a coloring.
+ * You can - color the model
+ *         - change palette
+ *         - name and save coloring
+ * 
  */
 package colorization;
 
@@ -9,14 +11,10 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
-import net.coobird.thumbnailator.*;
 
 
 class CreationModelPanel extends JPanel implements ColoringAccessColor {
@@ -73,27 +71,22 @@ class CreationModelPanel extends JPanel implements ColoringAccessColor {
     }
     
     private void save() {
-        try {
+        
             String name = JOptionPane.showInputDialog(this, "Entrez un nom de coloriage :");
             if (name == null) {
                 JOptionPane.showMessageDialog(this, "Erreur de nom", "Erreur",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             DataHandler d = new DataHandler();
-            BufferedImage thumbnail = Thumbnails.of(coloring.getImage()).size(200, 200).asBufferedImage();
-            d.saveColoring(name, colors.getPalette() , coloring_empty, coloring.getImage(), thumbnail);
-            } catch (IOException ex) {
-                Logger.getLogger(CreationModelPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            d.saveColoring(name, colors.getPalette() , coloring_empty, coloring.getImage());
+
             parent.Ui_list();
     }
     
     public void chooseColor() {
             Color newColor;
             newColor = JColorChooser.showDialog(this, "Choisir une couleur", getColor() );
-            
-            System.err.println(newColor.getRGB() + "  " + colors.getSelectedColor().getRGB() + "   " +  0xFFFFFF);
-            
+                        
             if (newColor.getRGB() == Image.BLACK) 
                 newColor = new Color(254,254,254);
    

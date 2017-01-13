@@ -1,17 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class contains application's options :
+ *          - path
+ *          - dimension adapted to user's screen
+ *          
+ * 
  */
 package options;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-/**
- *
- * @author nobilis
- */
+
 public class Options {
     
     public static Dimension dimensionScreen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,6 +22,8 @@ public class Options {
                                                                 (int) (0.05f * Toolkit.getDefaultToolkit().getScreenSize().width), 
                                                                 (int) (0.05f * Toolkit.getDefaultToolkit().getScreenSize().height) 
                                                                 );
+    
+    public static Dimension dimensionThumbnail = new Dimension(200, 200);
     
     public static String pathToXmlFile = "colorings.xml";
     public static String directoryThumbnails = ".colorings/thumbnails/";

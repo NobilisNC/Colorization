@@ -1,7 +1,19 @@
+/*
+ * This class extends Image class
+ * It specializes this class by adding some filters to apply
+ *      - Alpha filter
+ *      - Sobel filter
+ *      - Reversed filter
+ *      - Accent Line
+ *      - Gray Mode     
+ * 
+ */
+
+
+
+
 package colorization;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -100,8 +112,8 @@ class ProcessedImage extends Image {
             reversed();
             alpha(alpha);
 
-            line_marker_x();
-            line_marker_y();
+            accentLine_x();
+            accentLine_y();
 
             repaint();
 	}
@@ -131,7 +143,7 @@ class ProcessedImage extends Image {
 		return 0;
 	}
 	
-	protected void line_marker_x() {
+	protected void accentLine_x() {
 		int y= 0, x = 0;
 
 		while ( y < image.getHeight() ) {
@@ -169,7 +181,7 @@ class ProcessedImage extends Image {
 	
 	
 	
-	protected void line_marker_y() {
+	protected void accentLine_y() {
 		int y= 0, x = 0;
 		
 		while ( x < image.getWidth() ) {
@@ -214,7 +226,7 @@ class ProcessedImage extends Image {
 			}
 		}
 		
-	//Cherche les lignes 
+	//Find Lines
 	protected void sobel() {
 		int[] G= new int[image.getHeight()* image.getWidth()];
 		int[][] sobel_x = {{-1,0,1},

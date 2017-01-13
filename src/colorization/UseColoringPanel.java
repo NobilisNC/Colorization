@@ -1,14 +1,21 @@
+/*
+ * This class provides functionalities to paint the Coloring
+ * It displays the coloring, its model ant the color palette.
+ *
+ * Its allows to check if the coloring is the same as its model.
+ *
+ */
+
+
+
 package colorization;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;

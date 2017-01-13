@@ -1,6 +1,9 @@
+/*
+ * This class extends the Image class
+ * Provides fullfill algorithm when clicked.
+ *
+ */
 package colorization;
-
-
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
